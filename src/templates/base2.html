@@ -100,22 +100,22 @@ Author URL: http://w3layouts.com
 								<div class="browse-items">
 									<h3 class="hny-title two mt-md-5 mt-4">Browse all:</h3>
 									<ul class="search-items">
-										<li><a href="genre.html">Action</a></li>
-										<li><a href="genre.html">Drama</a></li>
-										<li><a href="genre.html">Family</a></li>
-										<li><a href="genre.html">Thriller</a></li>
-										<li><a href="genre.html">Commedy</a></li>
-										<li><a href="genre.html">Romantic</a></li>
-										<li><a href="genre.html">Tv-Series</a></li>
-										<li><a href="genre.html">Horror</a></li>
-										<li><a href="genre.html">Action</a></li>
-										<li><a href="genre.html">Drama</a></li>
-										<li><a href="genre.html">Family</a></li>
-										<li><a href="genre.html">Thriller</a></li>
-										<li><a href="genre.html">Commedy</a></li>
-										<li><a href="genre.html">Romantic</a></li>
-										<li><a href="genre.html">Tv-Series</a></li>
-										<li><a href="genre.html">Horror</a></li>
+										<li><a href="{% url 'movies:all' %}">All Movies</a></li>
+										<li><a href="{% url 'movies:all_series' %}">Tv-Series</a></li>
+										<li><a href="{% url 'movies:type' 'action' %}">Action</a></li>
+										<li><a href="{% url 'movies:type' 'drama' %}">Drama</a></li>
+										<li><a href="{% url 'movies:type' 'fantasy' %}">Fantasy</a></li>
+										<li><a href="{% url 'movies:type' 'thriller' %}">Thriller</a></li>
+										<li><a href="{% url 'movies:type' 'comedy' %}">Commedy</a></li>
+										<li><a href="{% url 'movies:type' 'romance' %}">Romantic</a></li>
+										<li><a href="{% url 'movies:type' 'horror' %}">Horror</a></li>
+										<li><a href="{% url 'movies:type' 'crime' %}">Crime</a></li>
+										<li><a href="{% url 'movies:type' 'historical' %}">Historical</a></li>
+										<li><a href="{% url 'movies:type' 'science-fiction' %}">Science fiction</a></li>
+										<li><a href="{% url 'movies:type' 'documentary' %}">Documentary</a></li>
+										<li><a href="{% url 'movies:type' 'mystery' %}">Meystery</a></li>
+										<li><a href="{% url 'movies:type' 'adventure' %}">Adventure</a></li>
+										<li><a href="#">Test</a></li>
 									</ul>
 								</div>
 							</div>
@@ -187,7 +187,7 @@ Author URL: http://w3layouts.com
 										<li><a href="#">Movies</a></li>
 										<li><a href="#">Videos</a></li>
 										<li><a href="#">English Movies</a></li>
-										<li><a href="#">Tailor</a></li>
+										<li><a href="{% url 'admin:index' %}" target="_blank">Admin Page</a></li>
 										<li><a href="#">Upcoming Movies</a></li>
 										<li><a href="contact.html">Contact Us</a></li>
 									</ul>
