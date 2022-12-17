@@ -6,6 +6,7 @@ Author URL: http://w3layouts.com
 <!doctype html>
 
 {% load static %}
+{% load bootstrap4 %}
 
 <html lang="zxx">
 
@@ -56,19 +57,10 @@ Author URL: http://w3layouts.com
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="{% url 'movies:all' %}">All</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'drama' %}">Drama</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'adventure' %}">Adventure</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'action' %}">Action</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'romance' %}">Romance</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'fantasy' %}">Fantasy</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'mystery' %}">Mystery</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'thriller' %}">Thriller</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'crime' %}">Crime</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'historical' %}">Historical</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'science-fiction' %}">Science fiction</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'horror' %}">Horror</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'comedy' %}">Comedy</a>
-								<a class="dropdown-item" href="{% url 'movies:type' 'documentary' %}">Documentary</a>
+								{% for type in all_categories %}
+								<a class="dropdown-item" href="{% url 'movies:type' type.slug %}">{{type}}</a>
+								{% endfor %}
+								
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -93,9 +85,9 @@ Author URL: http://w3layouts.com
 						<!-- search popup -->
 						<div id="search" class="pop-overlay">
 							<div class="popup">
-								<form action="#" method="post" class="search-box">
-									<input type="search" placeholder="Search your Keyword" name="search" required="required" autofocus="">
-									<button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+								<form action="{% url 'movies:search' %}" method="GET" class="search-box">
+									{% bootstrap_form search_form.form %}
+									<button type="submit" class="btn"><span aria-hidden="true"></span></button>
 								</form>
 								<div class="browse-items">
 									<h3 class="hny-title two mt-md-5 mt-4">Browse all:</h3>

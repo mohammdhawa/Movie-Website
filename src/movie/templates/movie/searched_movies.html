@@ -1,0 +1,84 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load django_template_maths %}
+{% load bootstrap4 %}
+
+{% block content %} 
+
+<!--/breadcrumbs -->
+<div class="w3l-breadcrumbs">
+    <nav id="breadcrumbs" class="breadcrumbs">
+        <div class="container page-wrapper">
+            <a href="{% url 'movies:movies' %}">Home</a> » <span class="breadcrumb_last" aria-current="page">Genre</span>
+        </div>
+    </nav>
+</div>
+<!--//breadcrumbs -->
+<!--/genre -->
+
+<div class="container py-5">
+    <div class="d-grid-1 py-lg-4 my-lg-2">
+        <div style="color:var(--theme-title)" class="text">
+                <div class="genre-single-page mb-lg-2 mb-2">
+                    <div class="row ab-grids-sec mt-0">
+                        <div class="col-lg-12 gen-right-1">
+                            <form method="GET">
+                                {% csrf_token %}
+                                {% bootstrap_form search_form.form %}
+                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!--grids-sec1-->
+<section class="w3l-grids">
+    <div class="grids-main py-5">
+        <div class="container py-lg-4">
+            <div class="headerhny-title">
+                <div class="w3l-title-grids">
+                    <div class="headerhny-left">
+                        <h3 class="hny-title">Latest Movies</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="w3l-populohny-grids">
+                
+                {% for movie in searched_movies %}
+                        
+                <div class="item vhny-grid">
+                    <div class="box16 mb-0" style="width:270px; height:350px;">
+                        <a href="{% url 'movies:movie_details' movie.slug %}">
+                            <figure style="width:270px; height:350px;">
+                                <img style="width:270px; height:350px;" class="img-fluid" src="{{movie.image.url}}" alt="">
+                            </figure>
+                            <div class="box-content">
+                                <h3 class="title">{{movie}}</h3>
+                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
+
+                                    </span>
+                                </h4>
+                            </div>
+                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="button-center text-center mt-3">
+            <a href="#" class="btn view-button">View all <span class="fa fa-angle-double-right ml-2"
+                    aria-hidden="true"></span></a>
+        </div>
+
+    </div>
+</section>
+<!--//grids-sec1-->
+
+{% endblock content %}
+
