@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Movie, Actor, MovieType, Series, Season, Epsoide
+from .filters import MovieFilter
 
 # Create your views here.
 
@@ -37,8 +38,10 @@ def all_movies(request):
     my_popular = zip(first_3, second_3)
     
     all_movies = Movie.objects.all().order_by('-id')
+    myfilter = MovieFilter(request.GET, all_movies)
+    all_movies = myfilter.qs
     
-    context = {'my_popular': my_popular, 'all_movies': all_movies}
+    context = {'my_popular': my_popular, 'all_movies': all_movies, 'myfilter': myfilter}
     return render(request, 'movie/all_movies.html', context)
 
 

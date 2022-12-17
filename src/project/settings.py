@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'about',
     'contact',
     'django_template_maths',
+    'django_filters',
+    "bootstrap4",
 ]
 
 MIDDLEWARE = [

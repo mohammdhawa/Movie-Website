@@ -66,6 +66,24 @@
 </section>
 <!--//grids-sec1-->
 
+<div class="container py-5">
+    <div class="d-grid-1 py-lg-4 my-lg-2">
+        <div style="color:var(--theme-title)" class="text">
+                <div class="genre-single-page mb-lg-2 mb-2">
+                    <div class="row ab-grids-sec mt-0">
+                        <div class="col-lg-12 gen-right-1">
+                            <form method="GET">
+                                {% csrf_token %}
+                                {{myfilter.form}}
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
 <!--grids-sec1-->
 <section class="w3l-grids">
     <div class="grids-main py-5">
