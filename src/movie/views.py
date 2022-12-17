@@ -11,9 +11,14 @@ def movies_list(request):
     lastest_4 = Movie.objects.all().order_by('-id')[:4]
     popular_4 = Movie.objects.all().order_by('rate')[:4]
     lastest_6 = Movie.objects.all().order_by('-id')[:6]
+    recent_9 = movies.order_by('-id')[:9]
+    popular_9 = movies.order_by('rate')[:9]
+    top_3 = movies.order_by('rate')[:3]
     
     context = {'movies': movies, 'movies_4': lastest_4, 
-               'popular_4': popular_4, 'lastest_6': lastest_6, 'series': series}
+               'popular_4': popular_4, 'lastest_6': lastest_6,
+               'series': series, 'recent_9': recent_9, 'popular_9': popular_9,
+               'top_3': top_3}
     return render(request, 'movie/movies_list.html', context)
 
 
@@ -90,9 +95,6 @@ def searched_movies(request):
     all_movies = Movie.objects.all().order_by('-id')
     myfilter = MovieSearch(request.GET, all_movies)
     all_movies = myfilter.qs
-    
-    print(request.GET)
-    print(request.GET.get('name'))
     
     context = {'all_movies': all_movies, 'myfilter': myfilter}
     return render(request, 'movie/searched_movies.html', context)
