@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MovieType, Movie, Subtitle, Actor, Series, Season, Epsoide
+from .models import MovieType, Movie, Subtitle, Actor, Series, Season, Epsoide, Language, Country
 
 
 # Register your models here.
@@ -10,3 +10,5 @@ admin.site.register(Actor)
 admin.site.register(Series)
 admin.site.register(Season)
 admin.site.register(Epsoide)
+admin.site.register(Language)
+admin.site.register(Country)

@@ -59,7 +59,6 @@
                                 </span>
                                 {{movie.running_time|div:60|add_decimal:0}} Hr {{movie.running_time|mod:60|add_decimal:0}}min
                                 </span>
-                                    <span class="post fa fa-heart text-right"></span>
                                 </h4>
                             </div>
                             <span class="fa fa-play video-icon" aria-hidden="true"></span>
@@ -104,7 +103,6 @@
                                 </span>
                                 {{movie.running_time|div:60|add_decimal:0}} Hr {{movie.running_time|mod:60|add_decimal:0}}min
                                 </span>
-                                <span class="post fa fa-heart text-right"></span>
                                 </h4>
                             </div>
                             <span class="fa fa-play video-icon" aria-hidden="true"></span>
@@ -235,7 +233,7 @@
                                             </a>
                                         </div>
                                         <div class="message">
-                                            <p>{{movie.language}}</p>
+                                            <p>{{movie.country}}</p>
                                             <a class="author-book-title" href="{% url 'movies:movie_details' movie.slug %}">{{movie}}</a>
                                             <h4> <span class="post"><span class="fa fa-clock-o"> </span> {{movie.running_time|div:60|add_decimal:0}} Hr {{movie.running_time|mod:60|add_decimal:0}}min
                                                 </span>

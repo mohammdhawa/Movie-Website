@@ -93,11 +93,14 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'movies_db',
+#         'NAME': 'my_app',
 #         'USER': 'root',
 #         'PASSWORD': '',
 #         'HOST': '127.0.0.1',
 #         'PORT': '3306',
+#         'OPTIONS': {
+#             'sql_mode': 'traditional',
+#         }
 #     }
 # }
 
