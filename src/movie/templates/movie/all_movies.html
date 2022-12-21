@@ -1,6 +1,7 @@
 {% extends 'base2.html' %}
 {% load static %}
 {% load django_template_maths %}
+{% load bootstrap4 %}
 
 {% block content %} 
 
@@ -66,28 +67,10 @@
 </section>
 <!--//grids-sec1-->
 
-<div class="container py-5">
-    <div class="d-grid-1 py-lg-4 my-lg-2">
-        <div style="color:var(--theme-title)" class="text">
-                <div class="genre-single-page mb-lg-2 mb-2">
-                    <div class="row ab-grids-sec mt-0">
-                        <div class="col-lg-12 gen-right-1">
-                            <form method="GET">
-                                {% csrf_token %}
-                                {{myfilter.form}}
-                                <button type="submit" class="btn btn-primary">Filter</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-</div>
-
 <!--grids-sec1-->
-<section class="w3l-grids">
+<section class="w3l-grids " >
     <div class="grids-main py-5">
-        <div class="container py-lg-4">
+        <div class="container   py-lg-4">
             <div class="headerhny-title">
                 <div class="w3l-title-grids">
                     <div class="headerhny-left">
@@ -95,15 +78,35 @@
                     </div>
                 </div>
             </div>
-            <div class="w3l-populohny-grids">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+
+     
+          
+                <form method="GET">
+                    {% csrf_token %}
+                    {% bootstrap_form myfilter.form %}
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </form>
+          
+        </div>
+
+<div class="col-9">
+            <div class="w3l-populohny-grids " style="grid-template-columns: 1fr 1fr 1fr; grid-gap: 0px;">
+               
                 
                 {% for movie in all_movies %}
-                        
-                <div class="item vhny-grid">
-                    <div class="box16 mb-0" style="width:270px; height:350px;">
+               
+
+
+                     
+                <div class="item vhny-grid   ">
+                    <div class="box16 mb-0" style="width:250px; height:320px;">
                         <a href="{% url 'movies:movie_details' movie.slug %}">
-                            <figure style="width:270px; height:350px;">
-                                <img style="width:270px; height:350px;" class="img-fluid" src="{{movie.image.url}}" alt="">
+                            <figure style="width:250px; height:320px;">
+                                <img style="width:250px; height:320px;" class="img-fluid" src="{{movie.image.url}}" alt="">
                             </figure>
                             <div class="box-content">
                                 <h3 class="title">{{movie}}</h3>
@@ -116,9 +119,13 @@
                         </a>
                     </div>
                 </div>
-
+            
                 {% endfor %}
+              
             </div>
+        </div>
+        </div>
+    </div>
         </div>
 
         <div class="button-center text-center mt-3">
