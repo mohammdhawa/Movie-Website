@@ -184,7 +184,9 @@
                         <div class="container">
                             <div class="mid-info">
                                 {% for type in movie.type.all %}
-                                <span class="sub-text">{{type}}</span>
+                                <span class="sub-text" style="background-color:var(--theme-lite);
+                                border-width:1px; border-style:solid; border-color:var(--theme-title);">
+                                <a style="color:var(--theme-title)" href="{% url 'movies:type' type.slug %}">{{type}}</a></span>
                                 {% endfor %}
 
                                 <h3>{{movie}}</h3>
