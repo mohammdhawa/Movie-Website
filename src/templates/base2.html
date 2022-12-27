@@ -159,7 +159,12 @@ Author URL: http://w3layouts.com
 									<ul>
 										<li><a href="{% url 'movies:movies' %}">Home</a> </li>
 										<li><a href="{% url 'about:about' %}">About</a> </li>
-										<li><a href="#">Login</a> </li>
+										{% if user.is_authenticated %}
+											<li><a href="{% url 'accounts:profile' %}">Profile</a></li>
+											<li><a href="{% url 'logout' %}">Logout</a></li>
+										{% else %}
+											<li><a href="{% url 'login' %}">Login</a></li>
+										{% endif %}
 									</ul>
 								</div>
 								<div class="col-md-3 col-sm-6 sub-two-right mt-5">

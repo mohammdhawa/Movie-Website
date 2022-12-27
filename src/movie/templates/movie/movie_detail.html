@@ -111,68 +111,43 @@
                 </div><hr>
                 <div class="w3l-blog-single comments mt-5">
                     <h3 class="post-content-title">Recent Comments</h3>
-
+                    {% for comment in comments %}
                     <div class="media mt-5">
                         <div class="img-circle">
-                            <img src="{%  static 'assets/images/c1.jpg' %}" class="mr-3 rounded-circle" alt="...">
+                            <img src="{{comment.user.image.url}}" class="mr-3 rounded-circle" alt="...">
                         </div>
+                        
+                        
                         <div class="media-body">
-                            <h5 class="mt-0">William James</h5>
-                            <span class="time">29 minutes ago</span>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, officiis rerum
-                                assumenda facere maxime accusamus cum. Numquam harum vitae id. Nemo qui fugiat
-                                nam quasi?</p>
-                            <a href="#reply-form" class="reply">Reply</a>
-
-                            <div class="media mt-3">
-                                <a class="" href="#">
-                                    <div class="img-circle img-circle-sm">
-                                        <img src="{% static 'assets/images/c2.jpg' %}" class="mr-3 rounded-circle" alt="...">
-                                    </div>
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0">Benjamin Lucas</h5>
-                                    <span class="time">4 hours ago</span>
-                                    <p>In gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                                        purus odio. Fusce condimentum nunc ac nisi vulputate
-                                        fringilla. Donec lacinia congue felis in faucibus.</p>
-                                    <a href="#reply-form" class="reply">Reply</a>
-                                </div>
-                            </div>
+                            <h5 class="mt-0">{{comment.user.user.first_name}} {{comment.user.user.last_name}}</h5>
+                            <span class="time">{{comment.created_date}}</span>
+                            <p>{{comment.comment}}</p>
                         </div>
+                        
                     </div>
-
-
-                    <div class="media mt-5">
-                        <div class="img-circle">
-                            <img src="{% static 'assets/images/c3.jpg' %}" class="mr-3 rounded-circle" alt="...">
-                        </div>
-                        <div class="media-body">
-                            <h5 class="mt-0">Isabella Mia</h5>
-                            <span class="time">16 hours ago</span>
-                            <p>Facere atque minus necessitatibus deserunt quibusdam voluptas quo? Omnis
-                                temporibus at, reprehenderit exercitationem dolores fuga, iste quidem earum
-                                nihil iusto repellendus. Assumenda alias illo dignissimos corrupti doloribus.
-                                </p>
-                            <a href="#reply-form" class="reply">Reply</a>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                     <div class="testi-top mt-5 pt-3">
+                        {% if user.is_authenticated %}
                         <h3 class="post-content-title">Leave a Comment</h3>
                         <div class="form-commets mt-5">
-                            <form action="#" method="post">
-                                <div class="media-form">
-                                    <input type="text" class="mb-3" name="Name" required="Name" placeholder="Your Name">
-                                    <input type="email" class="mb-3" name="Email" required="Email" placeholder="Your Email">
+                            <form action="{% url 'movies:movie_details' movie.slug %}" method="post">
+                                {% csrf_token %}
+                                
+                                <div class="form-group">
+                                    {{form}}
                                 </div>
-                                <textarea name="Message" required="" placeholder="Write your comments here"></textarea>
+                                
+                                {% comment %} <textarea name="Message" required="" placeholder="Write your comments here"></textarea> {% endcomment %}
                                 <div class="text-right mt-3">
                                     <button class="btn read-button" type="submit">Post comment</button>
                                 </div>
 
                             </form>
                         </div>
+                        {% else %}
+                            <h3 class="post-content-title">You need to login to be able to comment</h3>
+                            <a class="btn read-button" href="{% url 'login' %}">Login</a>
+                        {% endif %}
                     </div>
                 </div>
 

@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Movie, Actor, MovieType, Series, Season, Epsoide
 from .filters import MovieFilter, MovieSearch
+from django.urls import reverse
+from accounts.forms import CommentForm
+from accounts.models import Profile
 
 # Create your views here.
 
@@ -22,10 +25,24 @@ def movies_list(request):
     return render(request, 'movie/movies_list.html', context)
 
 
+# @login_required(login_url='/accounts/login/')
 def movie_details(request, slug):
     movie = Movie.objects.get(slug=slug)
+    comments = movie.comment_set.all()
     
-    context = {'movie': movie}
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            profile = Profile.objects.get(user=request.user.id)
+            form.instance.movie = movie
+            form.instance.user = profile
+            form.save()
+            return redirect(reverse('movies:movie_details', kwargs={
+                'slug': movie.slug
+            }))
+    
+    context = {'movie': movie, 'form': form, 'comments': comments}
     return render(request, 'movie/movie_detail.html', context)
 
 
